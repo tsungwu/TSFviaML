@@ -59,7 +59,7 @@ output = tts.caret(y=y,
                    preProcess = "center")
 
 VLD=window(output$dataused,start=TO[i],end=TO[i+1])[-1,]
-fcst=iForecast(Model=output,Type="dynamic",a.head = nrow(VLD)) 
+fcst=iForecast(Model=output,Type="dynamic",n.ahead = nrow(VLD)) 
 fcst=as.timeSeries(fcst,as.character(time(VLD)))
 FCST0=rbind(FCST0,fcst)
 print(paste0(m, ":",i,"/",(length(TO)-1)))
