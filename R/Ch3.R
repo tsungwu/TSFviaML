@@ -294,13 +294,19 @@ par(mfrow=c(1,1))
 
 #3.6 h2o.AutoML
 
-
+if(FALSE) {
+# For rolling window, to avoid redundant initialization, you may execute two commands below, 
+# and declare "initial=FALSE" within tts.autoML()
+h2o::h2o.init()        # Initialize h2o
+invisible(h2o::h2o.no_progress()) # Turn off progress bars
+}
 out1.autoML=tts.autoML(y=y,
                        x=NULL,
                        arOrder=c(1:3),
                        xregOrder=c(0),
                        type=c("none","trend","season","both")[1],
-                       train.end="2021-12-01")
+                       train.end="2021-12-01",
+					   initial=TRUE)
 print(out1.autoML$modelsUsed,n = nrow(out1.autoML$modelsUsed))
 tail(out1.autoML$dataused)
 
